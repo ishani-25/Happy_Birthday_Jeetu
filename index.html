@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff0f4">
+<meta name="description" content="A birthday surprise made with love for Jeet.">
+<title>For Jeetu ♡</title>
+
+
+<style>
+:root {
+  --pink: #f8b7cb;
+  --pink-dark: #e879a4;
+  --pink-light: #fff0f5;
+  --rose: #bd496f;
+  --cream: #fffaf7;
+  --text: #613b4b;
+  --white: #ffffff;
+  --shadow: 0 12px 35px rgba(189, 73, 111, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at top left, #ffe0eb 0, transparent 38%),
+    linear-gradient(180deg, #fff8fb 0%, #fffaf7 55%, #fff0f5 100%);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 4px;
+}
+
+.shell {
+  width: calc(100% - 32px);
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+/* HERO SECTION */
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before,
+.hero::after {
+  content: "♡";
+  position: absolute;
+  color: rgba(232, 121, 164, 0.2);
+  font-size: clamp(100px, 18vw, 200px);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatHeart 6s ease-in-out infinite;
+}
+
+.hero::before {
+  top: 7%;
+  left: 3%;
+}
+
+.hero::after {
+  content: "✧";
+  right: 4%;
+  bottom: 8%;
+  animation-delay: -3s;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 0 10px;
+  animation: fadeUp 1s ease both;
+}
+
+.seal {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #ffe1ec, #f6adc6);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow);
+  font-size: 42px;
+  animation: heartbeat 2.2s ease-in-out infinite;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--rose);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0 auto 18px;
+  color: var(--rose);
+  font-size: clamp(42px, 8vw, 76px);
+  font-weight: normal;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+
+.lead {
+  max-width: 620px;
+  margin: 0 auto 28px;
+  font-size: clamp(16px, 2.4vw, 20px);
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* BUTTONS */
+
+.primary,
+.secondary {
+  min-height: 48px;
+  max-width: 100%;
+  padding: 14px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.4;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.primary {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--pink-dark), var(--rose));
+  border: 1px solid transparent;
+  box-shadow: 0 8px 22px rgba(189, 73, 111, 0.2);
+}
+
+.secondary {
+  color: var(--rose);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #f3c4d5;
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(189, 73, 111, 0.18);
+}
+
+.primary:active,
+.secondary:active {
+  transform: scale(0.98);
+}
+
+/* GENERAL SECTIONS */
+
+.section {
+  padding: 64px 0;
+  position: relative;
+}
+
+.section-heading {
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.section h2 {
+  margin: 0 0 12px;
+  color: var(--rose);
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.section-intro {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* LOVE LETTER */
+
+.letter {
+  padding: clamp(22px, 4vw, 38px);
+  border: 1px solid rgba(232, 121, 164, 0.25);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow-wrap: anywhere;
+}
+
+.letter::before {
+  content: "♡";
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  color: rgba(232, 121, 164, 0.2);
+  font-size: 42px;
+  pointer-events: none;
+}
+
+.letter p {
+  margin: 0 0 18px;
+  font-size: 17px;
+  line-height: 1.95;
+}
+
+.letter p:last-child {
+  margin-bottom: 0;
+}
+
+.signature {
+  color: var(--rose);
+  font-size: 24px !important;
+  font-style: italic;
+}
+
+/* PHOTO GALLERY */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.photo {
+  min-width: 0;
+  width: 100%;
+  padding: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 121, 164, 0.22);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: 0 7px 22px rgba(189, 73, 111, 0.1);
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  animation: fadeUp 0.7s ease both;
+}
+
+.photo:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  box-shadow: 0 13px 28px rgba(189, 73, 111, 0.17);
+}
+
+.photo img {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+  background: #fff7fa;
+}
+
+.photo-note {
+  display: block;
+  margin: 10px 5px 5px;
+  color: var(--rose);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* OPTIONAL CONTENT / WISH REVEAL */
+
+.hidden-content {
+  display: none;
+}
+
+.hidden-content.show {
+  display: block;
+  animation: fadeUp 0.7s ease both;
+}
+
+.wish-card {
+  padding: clamp(20px, 4vw, 34px);
+  border: 1px solid rgba(232, 121, 164, 0.25);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.wish-card p {
+  font-size: 17px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+/* PHOTO LIGHTBOX */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 20px 24px;
+  background: rgba(47, 21, 34, 0.88);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.lightbox.open {
+  display: flex;
+  animation: fadeIn 0.25s ease both;
+}
+
+.lightbox-content {
+  width: 100%;
+  max-width: 900px;
+  max-height: 88vh;
+  max-height: 88svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.lightbox-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 68vh;
+  max-height: 68svh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.lightbox-content .photo-note {
+  width: 100%;
+  max-width: 700px;
+  margin: 0;
+  padding: 4px 8px 12px;
+  color: #fff0f5;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* FLOATING HEARTS */
+
+.heart-burst {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 10000;
+  pointer-events: none;
+  font-size: 24px;
+  animation: burstHeart 1.5s ease-out forwards;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 30px 16px 38px;
+  color: var(--rose);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(8deg);
+  }
+}
+
+@keyframes burstHeart {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--x, 0px)),
+      calc(-50% + var(--y, -100px))
+    ) scale(1.5) rotate(25deg);
+  }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+  .shell {
+    width: calc(100% - 22px);
+  }
+
+  .hero {
+    padding: 34px 0;
+  }
+
+  .seal {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 20px;
+    font-size: 34px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  h1 {
+    font-size: clamp(38px, 11vw, 46px);
+  }
+
+  .lead {
+    font-size: 15px;
+  }
+
+  .section {
+    padding: 42px 0;
+  }
+
+  .photo-grid {
+    gap: 8px;
+  }
+
+  .photo {
+    padding: 5px;
+    border-radius: 12px;
+  }
+
+  .photo-note {
+    margin: 7px 2px 4px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+}
+
+/* PHONES */
+
+@media (min-width: 381px) and (max-width: 480px) {
+  .shell {
+    width: calc(100% - 24px);
+  }
+
+  .hero {
+    padding: 38px 0;
+  }
+
+  .seal {
+    width: 84px;
+    height: 84px;
+    font-size: 37px;
+  }
+
+  h1 {
+    font-size: clamp(42px, 10vw, 56px);
+  }
+
+  .section {
+    padding: 48px 0;
+  }
+
+  .letter {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+
+  .letter p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .signature {
+    font-size: 21px !important;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .photo img {
+    max-height: 300px;
+  }
+
+  .photo-note {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .lightbox {
+    padding: 60px 12px 18px;
+  }
+
+  .lightbox-content img {
+    max-height: 62svh;
+  }
+
+  .lightbox-content .photo-note {
+    font-size: 14px;
+  }
+
+  .close {
+    top: 10px;
+    right: 12px;
+  }
+}
+
+/* TABLETS AND LARGER PHONES */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .shell {
+    width: calc(100% - 36px);
+  }
+
+  .hero {
+    padding: 44px 0;
+  }
+
+  .section {
+    padding: 54px 0;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .photo img {
+    max-height: 340px;
+  }
+}
+
+/* LAPTOPS AND DESKTOPS */
+
+@media (min-width: 768px) {
+  .shell {
+    width: min(calc(100% - 48px), 900px);
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .photo img {
+    max-height: 360px;
+  }
+
+  .photo-note {
+    font-size: 13px;
+  }
+}
+
+/* TOUCHSCREEN DEVICES */
+
+@media (hover: none) {
+  .photo:hover,
+  .primary:hover,
+  .secondary:hover {
+    transform: none;
+  }
+}
+
+/* ACCESSIBILITY: REDUCE ANIMATION WHEN REQUESTED */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+
+</head>
+<body>
+<header class="hero" id="home"><div class="shell">
+<div class="seal" aria-hidden="true">♡</div><div class="eyebrow">a little surprise for my favourite human</div>
+<h1>Happy Birthday,<br><em>My LOVE.</em></h1>
+<p class="lead">Somehow, in this big world, you became my favourite person, my happiest place, and the one I wish I could hold a little longer. ❤️</p>
+<button class="primary" id="openBtn">Tap to open your surprise 💌</button><div class="tiny">made with all my love, just for you</div>
+</div></header>
+<main id="surprise" class="hidden">
+<section class="section shell"><div class="rule"></div><div class="eyebrow">from my heart to yours</div><h2>To my Jeetu</h2>
+
+<article class="letter">
+  <p><strong>Happy birthday, My Lalu my love ♡</strong></p>
+
+  <p>If I could give you one gift today, it would be the chance to see yourself through my eyes, even for a moment. Maybe then you’d understand how special you are to me and how much happiness you bring into my life just by being you.</p>
+
+  <p>Sometimes I think about our journey — how we went from just friends, to best friends, to becoming lovers. Somewhere between all our conversations, silly jokes, little fights, endless laughter, and shared memories, you became so much more than I ever imagined. You became my favourite person, my comfort, and someone I cannot imagine my little world without. And honestly, getting to love my best friend is one of the most beautiful things that has ever happened to me. ❤️</p>
+
+  <p>And then there’s us. Our silly conversations, our little jokes, our memories, our endless nicknames, and all those tiny things that might seem ordinary to anyone else but mean so much to me. Somehow, you’ve become a part of my everyday life in the sweetest way. Even when we’re not together, you’re there in my thoughts, in the things I wish I could tell you first, in the places I want to take you, and in all the moments when I think, <em>I wish he were here with me right now.</em></p>
+
+  <p>I know the distance isn't always easy. There are so many moments when I wish I could be beside you, hug you a little tighter, annoy you with my love, and celebrate your special day in person. But until I can, I hope this little surprise reminds you that no matter how many miles separate us, you always have a special place in my heart.</p>
+
+  <p>On your birthday, I wish you endless happiness, success, peace, and the courage to achieve everything you dream of. And selfishly, I wish for more memories with you, more pictures together, more laughter, more hugs, and a future where we don't have to miss each other quite so much.</p>
+
+  <p>Thank you for being my friend, my best friend, my love, and my favourite person to share this little life with. If I could choose again, I'd still choose you — in every version of our story. ♡</p>
+
+  <p class="signature">
+    Happy Birthday, my love! 🩵🫂🧿
+    <br>
+    I wish I could be there to hug you right now, but until then, imagine me holding you a little tighter than usual.
+    <br>
+    I love you, always. 💋🫂
+  </p>
+</article>
+</section>
+<section class="section shell">
+  <div class="eyebrow">little moments, forever memories ♡</div>
+  <h2>Us, in little snapshots</h2>
+  <p>Every picture holds a little piece of my heart. Tap any photo to see it bigger. ♡</p>
+
+  <div class="photo-grid">
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 1" data-full="photos/memory-01.jpeg">
+        <img src="photos/memory-01.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">Our 1st photo together ❤️</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 2" data-full="photos/memory-02.jpeg">
+        <img src="photos/memory-02.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">One goodbye I wish I could turn into one more hug. Until I can hold you again, a little piece of my heart goes wherever you go. 🫂❤️‍🩹</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 3" data-full="photos/memory-03.jpeg">
+        <img src="photos/memory-03.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">One of the best times I've spent with you. 💗</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 4" data-full="photos/memory-04.jpeg">
+        <img src="photos/memory-04.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">The SEXIEST man i've ever seen. 💋♡</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 5" data-full="photos/memory-05.jpeg">
+        <img src="photos/memory-05.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">MY Favourite photo of US. 🫶</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 6" data-full="photos/memory-06.jpeg">
+        <img src="photos/memory-06.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">Just two people enjoying a Navratri night, not knowing that one day, we'd become each other's favourite person and favourite story. ❤️✨</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 7" data-full="photos/memory-07.jpeg">
+        <img src="photos/memory-07.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">Wish I could step into this picture and hug you right now. 🤗</p>
+      </button>
+    </div>
+
+        <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 9" data-full="photos/memory-09.jpeg">
+        <img src="photos/memory-09.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">The one when we were just friends and u were without beard. 😁</p>
+      </button>
+    </div>
+
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 8" data-full="photos/memory-08.jpeg">
+        <img src="photos/memory-08.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">You in Pink shirt WOW 💋</p>
+      </button>
+    </div>
+
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 10" data-full="photos/memory-10.jpeg">
+        <img src="photos/memory-10.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">My favourite memories are the ones with you in them. Forever us. ♾️❤️</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 11" data-full="photos/memory-11.jpeg">
+        <img src="photos/memory-11.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">Handsome boy, soft heart, and unfortunately for you, a girlfriend who adores you. ♾️❤️</p>
+      </button>
+    </div>
+
+    <div class="memory-card">
+      <button class="photo" type="button" aria-label="Open memory 12" data-full="photos/memory-12.jpeg">
+        <img src="photos/memory-12.jpeg" alt="A favourite memory of us" loading="lazy">
+        <p class="photo-note">Just a screen between us, but somehow you still feel like home. ♾️🩵</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section shell"><div class="rule"></div><div class="eyebrow">make a wish, birthday boy</div><h2>One wish, just for you</h2><span class="cake">🎂</span><p>Close your eyes, make a wish, and let this next chapter be kind to you.</p><button class="primary" id="wishBtn">I made a wish ✨</button>
+<div class="wish" id="wish">My wish for you is a year full of good health, big wins, peaceful nights, happy surprises, and all the love your heart can hold. May your dreams come closer, may your worries feel lighter, and may you always have reasons to smile. Happy birthday, Jeetu. I love you. ♡</div>
+<p style="margin-top:30px"><button class="secondary" id="heartBtn">One more hug in heart form ♡</button></p>
+</section></main>
+<footer class="footer">made for LALU, with love ♡</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="close" id="closeLightbox" aria-label="Close photo">×</button>
+
+  <div class="lightbox-content">
+    <img id="largePhoto" src="" alt="Our memory">
+    <p id="largePhotoNote" class="photo-note"></p>
+  </div>
+</div>
+
+<script>
+const surprise=document.getElementById('surprise');
+document.getElementById('openBtn').addEventListener('click',()=>{surprise.classList.remove('hidden');surprise.scrollIntoView({behavior:'smooth'});burstHearts(20)});
+document.getElementById('wishBtn').addEventListener('click',()=>{document.getElementById('wish').classList.add('show');document.getElementById('wishBtn').textContent='Wish sent to the universe ♡';burstHearts(28)});
+document.getElementById('heartBtn').addEventListener('click',()=>burstHearts(32));
+function burstHearts(n){const s = [
+  '♡', '♥', '💗', '✨', '💕', '💋', '🫂', '🩵', '💞'
+];for(let i=0;i<n;i++){const e=document.createElement('span');e.className='heart';e.textContent=s[Math.floor(Math.random()*s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=14+Math.random()*23+'px';e.style.color=['#d95d78','#b74c70','#c69a59','#e58da4'][Math.floor(Math.random()*4)];e.style.animationDuration=3+Math.random()*3+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
+
+const lb = document.getElementById('lightbox');
+const large = document.getElementById('largePhoto');
+const largePhotoNote = document.getElementById('largePhotoNote');
+
+document.querySelectorAll('.photo').forEach(b => {
+  b.addEventListener('click', () => {
+    large.src = b.dataset.full;
+
+    const note = b.querySelector('.photo-note');
+    largePhotoNote.textContent = note ? note.textContent : '';
+
+    lb.classList.add('open');
+  });
+});
+
+function closeLb() {
+  lb.classList.remove('open');
+  large.src = '';
+  largePhotoNote.textContent = '';
+}
+document.getElementById('closeLightbox').addEventListener('click',closeLb);lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+</script></body></html>
