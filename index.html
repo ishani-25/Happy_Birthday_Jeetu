@@ -7,7 +7,13 @@
 <title>For Jeetu ♡</title>
 
 
+
 <style>
+/* =========================================
+   JEETU'S BIRTHDAY WEBSITE
+   COMPLETE CSS — PHONE + LAPTOP
+========================================= */
+
 :root {
   --pink: #f8b7cb;
   --pink-dark: #e879a4;
@@ -18,6 +24,10 @@
   --white: #ffffff;
   --shadow: 0 12px 35px rgba(189, 73, 111, 0.14);
 }
+
+/* =========================================
+   GLOBAL STYLING
+========================================= */
 
 * {
   box-sizing: border-box;
@@ -34,8 +44,17 @@ body {
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
   background:
-    radial-gradient(circle at top left, #ffe0eb 0, transparent 38%),
-    linear-gradient(180deg, #fff8fb 0%, #fffaf7 55%, #fff0f5 100%);
+    radial-gradient(
+      circle at top left,
+      #ffe0eb 0,
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #fff8fb 0%,
+      #fffaf7 55%,
+      #fff0f5 100%
+    );
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -61,7 +80,9 @@ button:focus-visible {
   margin-inline: auto;
 }
 
-/* HERO SECTION */
+/* =========================================
+   HERO — FIRST BIRTHDAY SCREEN
+========================================= */
 
 .hero {
   min-height: 100vh;
@@ -83,7 +104,7 @@ button:focus-visible {
   font-size: clamp(100px, 18vw, 200px);
   z-index: -1;
   pointer-events: none;
-  animation: floatHeart 6s ease-in-out infinite;
+  animation: floatDecoration 6s ease-in-out infinite;
 }
 
 .hero::before {
@@ -98,11 +119,7 @@ button:focus-visible {
   animation-delay: -3s;
 }
 
-.hero-content {
-  width: 100%;
-  max-width: 760px;
-  margin-inline: auto;
-  padding: 0 10px;
+.hero .shell {
   animation: fadeUp 1s ease both;
 }
 
@@ -113,7 +130,11 @@ button:focus-visible {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #ffe1ec, #f6adc6);
+  background: linear-gradient(
+    145deg,
+    #ffe1ec,
+    #f6adc6
+  );
   border: 2px solid rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow);
   font-size: 42px;
@@ -139,6 +160,11 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+h1 em {
+  color: var(--pink-dark);
+  font-weight: normal;
+}
+
 .lead {
   max-width: 620px;
   margin: 0 auto 28px;
@@ -146,18 +172,21 @@ h1 {
   line-height: 1.8;
 }
 
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+.tiny {
+  margin-top: 18px;
+  color: var(--rose);
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 1.6;
 }
 
-/* BUTTONS */
+/* =========================================
+   BUTTONS
+========================================= */
 
 .primary,
 .secondary {
+  display: inline-block;
   min-height: 48px;
   max-width: 100%;
   padding: 14px 24px;
@@ -175,7 +204,11 @@ h1 {
 
 .primary {
   color: var(--white);
-  background: linear-gradient(135deg, var(--pink-dark), var(--rose));
+  background: linear-gradient(
+    135deg,
+    var(--pink-dark),
+    var(--rose)
+  );
   border: 1px solid transparent;
   box-shadow: 0 8px 22px rgba(189, 73, 111, 0.2);
 }
@@ -197,35 +230,57 @@ h1 {
   transform: scale(0.98);
 }
 
-/* GENERAL SECTIONS */
+/* =========================================
+   IMPORTANT: SURPRISE REVEAL
+   Matches class="hidden" in your HTML
+========================================= */
+
+.hidden {
+  display: none !important;
+}
+
+#surprise {
+  animation: fadeUp 0.9s ease both;
+}
+
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
 
 .section {
   padding: 64px 0;
   position: relative;
 }
 
-.section-heading {
-  margin: 0 auto 34px;
-  text-align: center;
-}
-
 .section h2 {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   color: var(--rose);
   font-size: clamp(30px, 5vw, 44px);
   font-weight: normal;
   line-height: 1.2;
 }
 
-.section-intro {
-  max-width: 620px;
-  margin: 0 auto;
+.section > p {
   font-size: 16px;
   line-height: 1.8;
-  text-align: center;
 }
 
-/* LOVE LETTER */
+.rule {
+  width: 72px;
+  height: 2px;
+  margin: 0 auto 24px;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--pink-dark),
+    transparent
+  );
+}
+
+/* =========================================
+   LOVE LETTER
+========================================= */
 
 .letter {
   padding: clamp(22px, 4vw, 38px);
@@ -263,7 +318,9 @@ h1 {
   font-style: italic;
 }
 
-/* PHOTO GALLERY */
+/* =========================================
+   PHOTO GALLERY
+========================================= */
 
 .photo-grid {
   display: grid;
@@ -272,7 +329,13 @@ h1 {
   align-items: start;
 }
 
+.memory-card {
+  min-width: 0;
+  animation: fadeUp 0.8s ease both;
+}
+
 .photo {
+  display: block;
   min-width: 0;
   width: 100%;
   padding: 7px;
@@ -287,7 +350,6 @@ h1 {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
-  animation: fadeUp 0.7s ease both;
 }
 
 .photo:hover {
@@ -314,33 +376,45 @@ h1 {
   overflow-wrap: anywhere;
 }
 
-/* OPTIONAL CONTENT / WISH REVEAL */
+/* =========================================
+   BIRTHDAY CAKE
+========================================= */
 
-.hidden-content {
-  display: none;
-}
-
-.hidden-content.show {
+.cake {
   display: block;
-  animation: fadeUp 0.7s ease both;
+  margin: 18px auto;
+  font-size: clamp(42px, 8vw, 60px);
+  text-align: center;
+  animation: heartbeat 2.2s ease-in-out infinite;
 }
 
-.wish-card {
+/* =========================================
+   IMPORTANT: WISH REVEAL
+   Matches id="wish" and class="show"
+========================================= */
+
+#wish {
+  display: none;
+  margin-top: 22px;
   padding: clamp(20px, 4vw, 34px);
   border: 1px solid rgba(232, 121, 164, 0.25);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: var(--shadow);
   text-align: center;
-}
-
-.wish-card p {
   font-size: 17px;
   line-height: 1.85;
   overflow-wrap: anywhere;
 }
 
-/* PHOTO LIGHTBOX */
+#wish.show {
+  display: block;
+  animation: fadeUp 0.8s ease both;
+}
+
+/* =========================================
+   PHOTO LIGHTBOX
+========================================= */
 
 .lightbox {
   position: fixed;
@@ -420,20 +494,27 @@ h1 {
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* FLOATING HEARTS */
+/* =========================================
+   FLOATING HEARTS
+   Matches class="heart" created by JS
+========================================= */
 
-.heart-burst {
+.heart {
   position: fixed;
-  left: 50%;
-  top: 50%;
+  bottom: -45px;
   z-index: 10000;
   pointer-events: none;
-  font-size: 24px;
-  animation: burstHeart 1.5s ease-out forwards;
+  line-height: 1;
+  animation-name: floatUp;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
 }
 
-/* FOOTER */
+/* =========================================
+   FOOTER
+========================================= */
 
+.footer,
 footer {
   padding: 30px 16px 38px;
   color: var(--rose);
@@ -442,7 +523,9 @@ footer {
   line-height: 1.8;
 }
 
-/* ANIMATIONS */
+/* =========================================
+   ANIMATIONS
+========================================= */
 
 @keyframes fadeUp {
   from {
@@ -476,7 +559,7 @@ footer {
   }
 }
 
-@keyframes floatHeart {
+@keyframes floatDecoration {
   0%, 100% {
     transform: translateY(0) rotate(-8deg);
   }
@@ -486,22 +569,31 @@ footer {
   }
 }
 
-@keyframes burstHeart {
+@keyframes floatUp {
   0% {
+    opacity: 0;
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(0.7);
+  }
+
+  10% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.5);
   }
 
   100% {
     opacity: 0;
-    transform: translate(
-      calc(-50% + var(--x, 0px)),
-      calc(-50% + var(--y, -100px))
-    ) scale(1.5) rotate(25deg);
+    transform:
+      translateY(-115vh)
+      rotate(28deg)
+      scale(1.25);
   }
 }
 
-/* SMALL PHONES */
+/* =========================================
+   SMALL PHONES — UP TO 380PX
+========================================= */
 
 @media (max-width: 380px) {
   .shell {
@@ -536,6 +628,19 @@ footer {
     padding: 42px 0;
   }
 
+  .letter {
+    padding: 20px 16px;
+  }
+
+  .letter p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .signature {
+    font-size: 20px !important;
+  }
+
   .photo-grid {
     gap: 8px;
   }
@@ -553,17 +658,31 @@ footer {
 
   .primary,
   .secondary {
-    width: 100%;
     padding: 13px 16px;
     font-size: 14px;
   }
 
-  .hero-buttons {
-    gap: 10px;
+  .lightbox {
+    padding: 58px 12px 18px;
+  }
+
+  .lightbox-content img {
+    max-height: 60svh;
+  }
+
+  .lightbox-content .photo-note {
+    font-size: 14px;
+  }
+
+  .close {
+    top: 10px;
+    right: 12px;
   }
 }
 
-/* PHONES */
+/* =========================================
+   PHONES — 381PX TO 480PX
+========================================= */
 
 @media (min-width: 381px) and (max-width: 480px) {
   .shell {
@@ -616,10 +735,6 @@ footer {
     line-height: 1.5;
   }
 
-  .hero-buttons {
-    gap: 10px;
-  }
-
   .lightbox {
     padding: 60px 12px 18px;
   }
@@ -638,7 +753,9 @@ footer {
   }
 }
 
-/* TABLETS AND LARGER PHONES */
+/* =========================================
+   TABLETS — 481PX TO 767PX
+========================================= */
 
 @media (min-width: 481px) and (max-width: 767px) {
   .shell {
@@ -663,7 +780,9 @@ footer {
   }
 }
 
-/* LAPTOPS AND DESKTOPS */
+/* =========================================
+   LAPTOPS AND DESKTOPS
+========================================= */
 
 @media (min-width: 768px) {
   .shell {
@@ -684,7 +803,9 @@ footer {
   }
 }
 
-/* TOUCHSCREEN DEVICES */
+/* =========================================
+   TOUCHSCREEN IMPROVEMENTS
+========================================= */
 
 @media (hover: none) {
   .photo:hover,
@@ -694,7 +815,9 @@ footer {
   }
 }
 
-/* ACCESSIBILITY: REDUCE ANIMATION WHEN REQUESTED */
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   *,
