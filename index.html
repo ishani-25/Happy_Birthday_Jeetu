@@ -248,7 +248,7 @@ h1 em {
 ========================================= */
 
 .section {
-  padding: 64px 0;
+  padding: 40px 0;
   position: relative;
 }
 
@@ -258,11 +258,16 @@ h1 em {
   font-size: clamp(30px, 5vw, 44px);
   font-weight: normal;
   line-height: 1.2;
+  text-align: center;
 }
 
 .section > p {
   font-size: 16px;
   line-height: 1.8;
+  text-align: center;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding-inline: 8px;
 }
 
 .rule {
@@ -829,6 +834,173 @@ footer {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+
+/* =========================================
+   ROMANTIC PHOTO CAROUSEL
+========================================= */
+
+/* =========================================
+   ROMANTIC STACK OF MEMORIES
+========================================= */
+
+.photo-grid.carousel-track {
+  position: relative;
+  display: block !important;
+  width: 100%;
+  height: 510px;
+  padding: 12px 0 24px;
+  margin: 20px auto 30px;
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  perspective: 1000px;
+}
+
+.photo-grid.carousel-track:active {
+  cursor: grabbing;
+}
+
+.carousel-track .memory-card {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: min(82%, 390px);
+  min-width: 0;
+  margin: 0;
+  transform-origin: center bottom;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    filter 0.4s ease;
+  animation: none !important;
+}
+
+.carousel-track .memory-card .photo {
+  display: block;
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #f3c4d5;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(189, 73, 111, 0.17);
+  cursor: pointer;
+}
+
+.carousel-track .memory-card .photo img {
+  display: block;
+  width: 100%;
+  height: 330px;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff7fa;
+  pointer-events: none;
+}
+
+.carousel-track .memory-card .photo-note {
+  display: block;
+  margin: 11px 5px 5px;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+/* Front photograph */
+.carousel-track .memory-card.stack-active {
+  z-index: 5;
+  opacity: 1;
+  filter: none;
+  transform: translateX(-50%) rotate(0deg) scale(1);
+}
+
+/* Photograph peeking out on the right */
+.carousel-track .memory-card.stack-next {
+  z-index: 4;
+  opacity: 0.9;
+  transform: translateX(-43%) translateY(7px)
+             rotate(5deg) scale(0.94);
+  pointer-events: none;
+}
+
+/* Photograph peeking out on the left */
+.carousel-track .memory-card.stack-back {
+  z-index: 3;
+  opacity: 0.8;
+  transform: translateX(-57%) translateY(13px)
+             rotate(-5deg) scale(0.88);
+  pointer-events: none;
+}
+
+/* Hide cards deeper in the stack */
+.carousel-track .memory-card.stack-hidden {
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px)
+             scale(0.82);
+  pointer-events: none;
+}
+
+/* Small swipe hint */
+.swipe-hint {
+  margin: 0 auto 20px;
+  color: var(--rose);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+  .photo-grid.carousel-track {
+    height: 475px;
+  }
+
+  .carousel-track .memory-card {
+    width: 86%;
+  }
+
+  .carousel-track .memory-card .photo img {
+    height: 290px;
+  }
+
+  .carousel-track .memory-card .photo-note {
+    font-size: 12px;
+  }
+}
+
+/* Center memories and final hug content */
+#memoriesScreen > .eyebrow,
+#finalScreen > .eyebrow {
+  text-align: center;
+}
+
+#memoriesScreen > .rule,
+#finalScreen > .rule {
+  margin-inline: auto;
+}
+
+#finalScreen > p {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-inline: 12px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.final-hug-text {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
 </style>
 
 </head>
@@ -840,7 +1012,10 @@ footer {
 <button class="primary" id="openBtn">Tap to open your surprise 💌</button><div class="tiny">made with all my love, just for you</div>
 </div></header>
 <main id="surprise" class="hidden">
-<section class="section shell"><div class="rule"></div><div class="eyebrow">from my heart to yours</div><h2>To my Jeetu</h2>
+<section class="section shell" id="letterScreen">
+  <div class="rule"></div>
+  <div class="eyebrow">from my heart to yours</div>
+  <h2>To my Jeetu</h2>
 
 <article class="letter">
   <p><strong>Happy birthday, My Lalu my love ♡</strong></p>
@@ -864,14 +1039,28 @@ footer {
     <br>
     I love you, always. 💋🫂
   </p>
+
 </article>
+
+<div style="text-align:center; margin-top:32px;">
+  <p style="font-size:16px; line-height:1.8;">
+    And now, my love… let's look at our little memories together. ♡
+  </p>
+  <button class="primary" id="continueBtn">
+    Continue to our memories ♡ →
+  </button>
+</div>
+
 </section>
-<section class="section shell">
+
+<section class="section shell hidden" id="memoriesScreen">
+  <div class="rule"></div>
   <div class="eyebrow">little moments, forever memories ♡</div>
+
   <h2>Us, in little snapshots</h2>
   <p>Every picture holds a little piece of my heart. Tap any photo to see it bigger. ♡</p>
 
-  <div class="photo-grid">
+  <div class="photo-grid carousel-track" id="photoTrack">
 
     <div class="memory-card">
       <button class="photo" type="button" aria-label="Open memory 1" data-full="photos/memory-01.jpeg">
@@ -958,13 +1147,46 @@ footer {
         <p class="photo-note">Just a screen between us, but somehow you still feel like home. ♾️🩵</p>
       </button>
     </div>
-  </div>
+ </div>
+
+
+  <div style="text-align:center; margin-top:32px;">
+  <button class="secondary" id="backToLetterBtn">
+    ♡ Back to my letter
+  </button>
+
+  <p style="margin-top:16px;">
+    <button class="primary" id="continueToFinalBtn">
+      One last surprise, my love ♡ →
+    </button>
+  </p>
+</div>
 </section>
 
-<section class="section shell"><div class="rule"></div><div class="eyebrow">make a wish, birthday boy</div><h2>One wish, just for you</h2><span class="cake">🎂</span><p>Close your eyes, make a wish, and let this next chapter be kind to you.</p><button class="primary" id="wishBtn">I made a wish ✨</button>
-<div class="wish" id="wish">My wish for you is a year full of good health, big wins, peaceful nights, happy surprises, and all the love your heart can hold. May your dreams come closer, may your worries feel lighter, and may you always have reasons to smile. Happy birthday, Jeetu. I love you. ♡</div>
-<p style="margin-top:30px"><button class="secondary" id="heartBtn">One more hug in heart form ♡</button></p>
-</section></main>
+
+<section class="section shell hidden" id="finalScreen">
+  <div class="rule"></div>
+  <div class="eyebrow">one last little thing, my love ♡</div>
+  <h2 style="text-align:center;">A hug, just for you</h2>
+
+  <p class="final-hug-text">
+    Even though I can't be there to hug you today,
+    imagine this little corner of the internet wrapping
+    you in all my love. You deserve the biggest hug, my Jeetu. 🫂🩵
+  </p>
+
+  <div style="text-align:center; margin-top:28px;">
+    <button class="primary" id="heartBtn">
+      Send me one more hug ♡
+    </button>
+    <p id="hugMessage" class="hidden" style="margin-top:22px; line-height:1.9;">
+      MWAHHH! 💋🫂❤️ Sending you the tightest hug and a million kisses.
+      I love you, my Lalu. Always and forever. ♡
+    </p>
+  </div>
+</section>
+</main>
+
 <footer class="footer">made for LALU, with love ♡</footer>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
@@ -976,34 +1198,247 @@ footer {
   </div>
 </div>
 
+
+
 <script>
-const surprise=document.getElementById('surprise');
-document.getElementById('openBtn').addEventListener('click',()=>{surprise.classList.remove('hidden');surprise.scrollIntoView({behavior:'smooth'});burstHearts(20)});
-document.getElementById('wishBtn').addEventListener('click',()=>{document.getElementById('wish').classList.add('show');document.getElementById('wishBtn').textContent='Wish sent to the universe ♡';burstHearts(28)});
-document.getElementById('heartBtn').addEventListener('click',()=>burstHearts(32));
-function burstHearts(n){const s = [
-  '♡', '♥', '💗', '✨', '💕', '💋', '🫂', '🩵', '💞'
-];for(let i=0;i<n;i++){const e=document.createElement('span');e.className='heart';e.textContent=s[Math.floor(Math.random()*s.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=14+Math.random()*23+'px';e.style.color=['#d95d78','#b74c70','#c69a59','#e58da4'][Math.floor(Math.random()*4)];e.style.animationDuration=3+Math.random()*3+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
+const home = document.getElementById('home');
+const surprise = document.getElementById('surprise');
 
-const lb = document.getElementById('lightbox');
-const large = document.getElementById('largePhoto');
+const letterScreen = document.getElementById('letterScreen');
+const memoriesScreen = document.getElementById('memoriesScreen');
+const finalScreen = document.getElementById('finalScreen');
+
+const openBtn = document.getElementById('openBtn');
+const continueBtn = document.getElementById('continueBtn');
+const backToLetterBtn = document.getElementById('backToLetterBtn');
+const continueToFinalBtn = document.getElementById('continueToFinalBtn');
+const heartBtn = document.getElementById('heartBtn');
+const hugMessage = document.getElementById('hugMessage');
+
+// Hide all screens before showing the selected one.
+function showScreen(screen) {
+  home.classList.add('hidden');
+  letterScreen.classList.add('hidden');
+  memoriesScreen.classList.add('hidden');
+  finalScreen.classList.add('hidden');
+
+  surprise.classList.remove('hidden');
+  screen.classList.remove('hidden');
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// Birthday screen -> Letter.
+openBtn.addEventListener('click', () => {
+  showScreen(letterScreen);
+  burstHearts(20);
+});
+
+// Letter -> Memories.
+continueBtn.addEventListener('click', () => {
+  showScreen(memoriesScreen);
+  burstHearts(12);
+});
+
+// Memories -> Letter.
+backToLetterBtn.addEventListener('click', () => {
+  showScreen(letterScreen);
+});
+
+// Memories -> Final hug.
+continueToFinalBtn.addEventListener('click', () => {
+  showScreen(finalScreen);
+  burstHearts(15);
+});
+
+// Reveal the final hug message.
+heartBtn.addEventListener('click', () => {
+  hugMessage.classList.remove('hidden');
+  heartBtn.textContent = 'Hug and kisses sent, my love! 💋♡';
+  heartBtn.disabled = true;
+  burstHearts(32);
+});
+
+// Floating hearts animation.
+function burstHearts(n) {
+  const symbols = [
+    '♡', '♥', '💗', '✨', '💕',
+    '💋', '🫂', '🩵', '💞'
+  ];
+
+  const colors = [
+    '#d95d78', '#b74c70', '#c69a59', '#e58da4'
+  ];
+
+  for (let i = 0; i < n; i++) {
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = 14 + Math.random() * 23 + 'px';
+    heart.style.color =
+      colors[Math.floor(Math.random() * colors.length)];
+    heart.style.animationDuration =
+      3 + Math.random() * 3 + 's';
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6500);
+  }
+}
+
+// Photo lightbox.
+const lightbox = document.getElementById('lightbox');
+const largePhoto = document.getElementById('largePhoto');
 const largePhotoNote = document.getElementById('largePhotoNote');
+const closeLightbox = document.getElementById('closeLightbox');
 
-document.querySelectorAll('.photo').forEach(b => {
-  b.addEventListener('click', () => {
-    large.src = b.dataset.full;
+document.querySelectorAll('.photo').forEach((button) => {
+  button.addEventListener('click', () => {
+    largePhoto.src = button.dataset.full;
 
-    const note = b.querySelector('.photo-note');
+    const note = button.querySelector('.photo-note');
     largePhotoNote.textContent = note ? note.textContent : '';
 
-    lb.classList.add('open');
+    lightbox.classList.add('open');
   });
 });
 
 function closeLb() {
-  lb.classList.remove('open');
-  large.src = '';
+  lightbox.classList.remove('open');
+  largePhoto.src = '';
   largePhotoNote.textContent = '';
 }
-document.getElementById('closeLightbox').addEventListener('click',closeLb);lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
-</script></body></html>
+
+closeLightbox.addEventListener('click', closeLb);
+
+lightbox.addEventListener('click', (event) => {
+  if (event.target === lightbox) closeLb();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeLb();
+});
+
+
+/* Photo carousel navigation */
+
+/* Swipeable stack of memories */
+const photoTrack = document.getElementById('photoTrack');
+
+const memoryCards = Array.from(
+  photoTrack.querySelectorAll('.memory-card')
+);
+
+let currentPhoto = 0;
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swipeStartTime = 0;
+let isDragging = false;
+
+function renderPhotoStack() {
+  const total = memoryCards.length;
+
+  memoryCards.forEach((card, index) => {
+    card.classList.remove(
+      'stack-active',
+      'stack-next',
+      'stack-back',
+      'stack-hidden'
+    );
+
+    const distance = (index - currentPhoto + total) % total;
+
+    if (distance === 0) {
+      card.classList.add('stack-active');
+    } else if (distance === 1) {
+      card.classList.add('stack-next');
+    } else if (distance === total - 1) {
+      card.classList.add('stack-back');
+    } else {
+      card.classList.add('stack-hidden');
+    }
+  });
+}
+
+function moveStack(direction) {
+  if (memoryCards.length < 2) return;
+
+  currentPhoto =
+    (currentPhoto + direction + memoryCards.length)
+    % memoryCards.length;
+
+  renderPhotoStack();
+}
+
+photoTrack.addEventListener('touchstart', (event) => {
+  if (!event.touches.length) return;
+
+  swipeStartX = event.touches[0].clientX;
+  swipeStartY = event.touches[0].clientY;
+  swipeStartTime = Date.now();
+}, { passive: true });
+
+photoTrack.addEventListener('touchend', (event) => {
+  if (!event.changedTouches.length) return;
+
+  const deltaX = event.changedTouches[0].clientX - swipeStartX;
+  const deltaY = event.changedTouches[0].clientY - swipeStartY;
+  const elapsed = Date.now() - swipeStartTime;
+
+  // Respond to horizontal swipes, not normal vertical scrolling.
+  if (
+    Math.abs(deltaX) > 45 &&
+    Math.abs(deltaX) > Math.abs(deltaY) * 1.2 &&
+    elapsed < 1000
+  ) {
+    moveStack(deltaX < 0 ? 1 : -1);
+  }
+}, { passive: true });
+
+// Support mouse dragging on laptops.
+photoTrack.addEventListener('pointerdown', (event) => {
+  if (event.pointerType === 'touch') return;
+
+  swipeStartX = event.clientX;
+  swipeStartY = event.clientY;
+  isDragging = true;
+});
+
+photoTrack.addEventListener('pointerup', (event) => {
+  if (!isDragging) return;
+
+  isDragging = false;
+
+  const deltaX = event.clientX - swipeStartX;
+  const deltaY = event.clientY - swipeStartY;
+
+  if (
+    Math.abs(deltaX) > 45 &&
+    Math.abs(deltaX) > Math.abs(deltaY) * 1.2
+  ) {
+    moveStack(deltaX < 0 ? 1 : -1);
+  }
+});
+
+photoTrack.addEventListener('pointercancel', () => {
+  isDragging = false;
+});
+
+photoTrack.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowRight') moveStack(1);
+  if (event.key === 'ArrowLeft') moveStack(-1);
+});
+
+photoTrack.setAttribute('tabindex', '0');
+photoTrack.setAttribute('aria-label', 'Swipeable stack of our memories');
+
+renderPhotoStack();
+
+</script>
+
+</body></html>
