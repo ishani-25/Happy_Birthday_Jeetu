@@ -515,18 +515,6 @@ h1 em {
   animation-fill-mode: forwards;
 }
 
-/* =========================================
-   FOOTER
-========================================= */
-
-.footer,
-footer {
-  padding: 30px 16px 38px;
-  color: var(--rose);
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.8;
-}
 
 /* =========================================
    ANIMATIONS
@@ -1001,34 +989,65 @@ footer {
   overflow-wrap: anywhere;
 }
 
+
+/* Cute looping hug GIF */
+.hug-gif-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 26px auto;
+  padding: 12px;
+}
+
+.hug-gif {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.hug-love-message {
+  max-width: 600px;
+  margin: 18px auto;
+  padding: 0 12px;
+  text-align: center;
+  color: var(--rose);
+  font-size: 17px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
 </style>
 
 </head>
 <body>
 <header class="hero" id="home"><div class="shell">
-<div class="seal" aria-hidden="true">♡</div><div class="eyebrow">a little surprise for my favourite human</div>
-<h1>Happy Birthday,<br><em>My LOVE.</em></h1>
+<div class="seal" aria-hidden="true">♡</div><div class="eyebrow">a little surprise for my favourite man</div>
+<h1>Happy Birthday,<br><em>My Jaan.</em></h1>
 <p class="lead">Somehow, in this big world, you became my favourite person, my happiest place, and the one I wish I could hold a little longer. ❤️</p>
-<button class="primary" id="openBtn">Tap to open your surprise 💌</button><div class="tiny">made with all my love, just for you</div>
+<button class="primary" id="openBtn">Tap to open your surprise 💌</button><div class="tiny">made with all my love, just for you my LALU</div>
 </div></header>
 <main id="surprise" class="hidden">
 <section class="section shell" id="letterScreen">
   <div class="rule"></div>
   <div class="eyebrow">from my heart to yours</div>
-  <h2>To my Jeetu</h2>
+  <h2>To my Jeetli</h2>
 
 <article class="letter">
-  <p><strong>Happy birthday, My Lalu my love ♡</strong></p>
+  <p><strong>Happy birthday, My Lalu my baby ♡</strong></p>
 
-  <p>If I could give you one gift today, it would be the chance to see yourself through my eyes, even for a moment. Maybe then you’d understand how special you are to me and how much happiness you bring into my life just by being you.</p>
+  <p>If I could give you one gift today, it would be the chance to see yourself through my eyes, even for a moment. Maybe then you’d understand how special you are to me and how much happiness you bring into my life just by being you.🫂</p>
 
   <p>Sometimes I think about our journey — how we went from just friends, to best friends, to becoming lovers. Somewhere between all our conversations, silly jokes, little fights, endless laughter, and shared memories, you became so much more than I ever imagined. You became my favourite person, my comfort, and someone I cannot imagine my little world without. And honestly, getting to love my best friend is one of the most beautiful things that has ever happened to me. ❤️</p>
 
-  <p>And then there’s us. Our silly conversations, our little jokes, our memories, our endless nicknames, and all those tiny things that might seem ordinary to anyone else but mean so much to me. Somehow, you’ve become a part of my everyday life in the sweetest way. Even when we’re not together, you’re there in my thoughts, in the things I wish I could tell you first, in the places I want to take you, and in all the moments when I think, <em>I wish he were here with me right now.</em></p>
+  <p>And then there’s us. Our silly conversations, our little jokes, our memories, our endless nicknames, and all those tiny things that might seem ordinary to anyone else but mean so much to me, to us. Somehow, you’ve become a part of my everyday life in the sweetest way. Even when we’re not together, you’re there in my thoughts, in the things I wish I could tell you first, in the places I want to take you, and in all the moments when I think, <em>I wish he were here with me right now.</em>🥺</p>
 
-  <p>I know the distance isn't always easy. There are so many moments when I wish I could be beside you, hug you a little tighter, annoy you with my love, and celebrate your special day in person. But until I can, I hope this little surprise reminds you that no matter how many miles separate us, you always have a special place in my heart.</p>
+  <p>I know the distance isn't always easy. There are so many moments when I wish I could be beside you, hug you a little tighter, annoy you with my love, and celebrate your special day in person. But until I can, I hope this little website reminds you that no matter how many miles separate us, you always have a special place in my heart.🩵🫂</p>
 
-  <p>On your birthday, I wish you endless happiness, success, peace, and the courage to achieve everything you dream of. And selfishly, I wish for more memories with you, more pictures together, more laughter, more hugs, and a future where we don't have to miss each other quite so much.</p>
+  <p>On your birthday, I wish you endless happiness, success, peace, and the courage to achieve everything you dream of. And selfishly, I wish for more memories with you, more pictures together, more laughter, more hugs, and a future where we don't have to miss each other quite so much.🫂🫂</p>
 
   <p>Thank you for being my friend, my best friend, my love, and my favourite person to share this little life with. If I could choose again, I'd still choose you — in every version of our story. ♡</p>
 
@@ -1043,9 +1062,7 @@ footer {
 </article>
 
 <div style="text-align:center; margin-top:32px;">
-  <p style="font-size:16px; line-height:1.8;">
-    And now, my love… let's look at our little memories together. ♡
-  </p>
+  
   <button class="primary" id="continueBtn">
     Continue to our memories ♡ →
   </button>
@@ -1058,7 +1075,7 @@ footer {
   <div class="eyebrow">little moments, forever memories ♡</div>
 
   <h2>Us, in little snapshots</h2>
-  <p>Every picture holds a little piece of my heart. Tap any photo to see it bigger. ♡</p>
+  <p>Every picture holds a little piece of my heart. Swipe to see them. ♡</p>
 
   <div class="photo-grid carousel-track" id="photoTrack">
 
@@ -1157,37 +1174,46 @@ footer {
 
   <p style="margin-top:16px;">
     <button class="primary" id="continueToFinalBtn">
-      One last surprise, my love ♡ →
+      One last thing, CHAKU ♡ →
     </button>
   </p>
 </div>
 </section>
 
 
+
 <section class="section shell hidden" id="finalScreen">
   <div class="rule"></div>
-  <div class="eyebrow">one last little thing, my love ♡</div>
-  <h2 style="text-align:center;">A hug, just for you</h2>
+
+  <div class="eyebrow" style="text-align:center;">
+    Lots of LOVE, HUGS and KISSES ♡
+  </div>
+
+  <h2 style="text-align:center;">A piece of LOVE virtually 🩷</h2>
 
   <p class="final-hug-text">
-    Even though I can't be there to hug you today,
-    imagine this little corner of the internet wrapping
-    you in all my love. You deserve the biggest hug, my Jeetu. 🫂🩵
+    I wish I could be there to hug you today, spend the time with you, give the love you deserve, my baby.
+    Until then, imagine this is us. 🫂💋
   </p>
 
-  <div style="text-align:center; margin-top:28px;">
-    <button class="primary" id="heartBtn">
-      Send me one more hug ♡
-    </button>
-    <p id="hugMessage" class="hidden" style="margin-top:22px; line-height:1.9;">
-      MWAHHH! 💋🫂❤️ Sending you the tightest hug and a million kisses.
-      I love you, my Lalu. Always and forever. ♡
-    </p>
+  <div class="hug-gif-container">
+    <img
+      class="hug-gif"
+      src="https://i.pinimg.com/originals/5d/bd/34/5dbd3448a097f866bcc63c954092c978.gif"
+      alt="Cute teddy bear giving a hug and kisses"
+    >
   </div>
+
+  <p class="hug-love-message">
+    MWAHHH! 💋🫂❤️
+    <br>
+    The biggest hugs and a million kisses for my Lalu.
+    I love you, always and forever. ♡
+  </p>
 </section>
+
 </main>
 
-<footer class="footer">made for LALU, with love ♡</footer>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="close" id="closeLightbox" aria-label="Close photo">×</button>
@@ -1254,13 +1280,6 @@ continueToFinalBtn.addEventListener('click', () => {
   burstHearts(15);
 });
 
-// Reveal the final hug message.
-heartBtn.addEventListener('click', () => {
-  hugMessage.classList.remove('hidden');
-  heartBtn.textContent = 'Hug and kisses sent, my love! 💋♡';
-  heartBtn.disabled = true;
-  burstHearts(32);
-});
 
 // Floating hearts animation.
 function burstHearts(n) {
