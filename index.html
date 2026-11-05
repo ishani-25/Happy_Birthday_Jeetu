@@ -61,6 +61,12 @@
   box-sizing: border-box;
 }
 
+/* Keep the intro and birthday reveal mutually exclusive.
+   Author display rules on .hero/.birthday-reveal must not override hidden. */
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 20px;
@@ -1048,16 +1054,257 @@ h1 em {
   overflow-wrap: anywhere;
 }
 
+
+
+/* Birthday intro: balanced side-view archery composition */
+.intro-screen {
+  min-height: 100svh;
+  min-height: 100vh;
+  padding: 30px 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #f5f1f3;
+  color: #812542;
+  overflow: hidden;
+  transition: background 0.5s ease;
+}
+
+.intro-screen::before,
+.intro-screen::after { content: none; }
+
+.intro-content {
+  width: min(100%, 680px);
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.intro-heart-mark {
+  color: #a83d5d;
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.intro-title {
+  margin: 0;
+  color: #812542;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 5.2vw, 54px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: .1px;
+}
+.intro-instruction {
+  margin: 24px 0 0;
+  color: #812542;
+  font-size: 16px;
+}
+/* =========================================
+   INSTAGRAM STYLE HEART + BOW INTRO
+========================================= */
+
+.archery-stage{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:260px;
+  gap:50px;
+  margin-top:14px;
+  touch-action:pan-y;
+}
+
+.heart-target{
+  font-size:100px;
+  line-height:1;
+  transition:all .4s ease;
+  animation:pulseHeart 2s ease-in-out infinite;
+}
+
+.arrow-control{
+  border:none;
+  background:none;
+  font-size:70px;
+  cursor:grab;
+  padding:0;
+
+  transform:rotate(-45deg);
+  transition:
+    transform .3s ease,
+    opacity .3s ease;
+}
+
+.arrow-control:active{
+  cursor:grabbing;
+}
+
+.heart-target.popped{
+  opacity:0;
+  transform:scale(0);
+  transition:
+      transform .4s ease,
+      opacity .4s ease;
+}
+.bow-image{
+  width:90px;
+  height:auto;
+  display:block;
+}
+
+
+
+
+@keyframes pulseHeart{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+}
+
+.birthday-reveal {
+  min-height: 100svh;
+  min-height: 100vh;
+  background: #c7194b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 34px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.birthday-reveal[hidden] { display: none !important; }
+.reveal-content {
+  width: min(100%,620px);
+  position: relative;
+  z-index: 1;
+  animation: fadeUp .7s ease both;
+}
+.reveal-kicker {
+  font: 700 11px/1.5 Arial,sans-serif;
+  letter-spacing: 3px;
+  opacity: .85;
+  margin: 0 0 18px;
+}
+.reveal-content h2 {
+  margin: 0;
+  color: #fff;
+  font: 700 clamp(54px,10vw,86px)/1.05 Georgia,"Times New Roman",serif;
+}
+.reveal-yay {
+  color: #fff;
+  font: 700 clamp(48px,8vw,70px)/1.2 Georgia,"Times New Roman",serif;
+  margin: 10px 0 24px;
+}
+.reveal-yay span { font-family: Arial,sans-serif; }
+.reveal-content > p:not(.reveal-kicker) {
+  font: 16px/1.7 Georgia,serif;
+  margin: 0 auto 26px;
+}
+.reveal-continue {
+  border: 0;
+  border-radius: 30px;
+  background: #fff;
+  color: #bd1747;
+  padding: 14px 25px;
+  font: 600 15px Arial,sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(80,0,25,.14);
+}
+.reveal-content small {
+  display: block;
+  margin-top: 14px;
+  color: #ffe1e9;
+  font: italic 13px Georgia,serif;
+}
+.reveal-confetti {
+  position: absolute;
+  inset: 8% 0 auto;
+  color: rgba(255,255,255,.2);
+  font-size: clamp(20px,4vw,42px);
+  letter-spacing: 18px;
+  pointer-events: none;
+}
+@media (max-width: 480px) {
+  .intro-screen { padding: 22px 16px; }
+  .intro-heart-mark { margin-bottom: 24px; }
+  .intro-title { font-size: clamp(34px,9vw,46px); }
+  .intro-instruction { margin-top: 22px; }
+  .archery-stage { height: 240px; margin-top: 4px; }
+    .arrow-control {
+    left: calc(50% - 66px);
+    top: 82px;
+    width: 90px;
+  }
+  .intro-footnote { margin-top: 0; }
+  .reveal-content h2 { font-size: clamp(52px,14vw,72px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .balloon-wrap,.reveal-content {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
 </style>
 
 </head>
 <body>
-<header class="hero" id="home"><div class="shell">
-<div class="seal" aria-hidden="true">♡</div><div class="eyebrow">a little surprise for my favourite man</div>
-<h1>Happy Birthday,<br><em>My Jaan.</em></h1>
-<p class="lead">Somehow, in this big world, you became my favourite person, my happiest place, and the one I wish I could hold a little longer. ❤️</p>
-<button class="primary" id="openBtn">Tap to open your surprise 💌</button><div class="tiny">made with all my love, just for you my LALU</div>
-</div></header>
+<header class="hero intro-screen" id="home">
+  <div class="intro-content">
+
+    <div class="intro-heart-mark">♡</div>
+
+    <h1 class="intro-title">
+      Heiii Honey !!!!<br>
+    </h1>
+
+    <div class="archery-stage" id="archeryStage">
+
+      <div class="heart-target" id="heartBalloon">
+        ❤️
+      </div>
+
+       <button
+        class="arrow-control"
+        id="arrowControl"
+        type="button"
+        aria-label="Pull back the arrow"
+      >
+          🏹
+      </button>
+
+    </div>
+
+    <p class="intro-instruction" id="arrowHint">
+      Pull back the arrow to begin
+    </p>
+
+    <p class="intro-footnote">
+      a little surprise, made with all my love ♡
+    </p>
+
+     </div>
+</header>
+<section class="birthday-reveal" id="birthdayReveal" aria-live="polite" hidden>
+  <div class="reveal-confetti" aria-hidden="true">♡　✦　♥　✧　♡　✦</div>
+  <div class="reveal-content">
+    <p class="reveal-kicker">TODAY IS ALL ABOUT YOU</p>
+    <h2>It’s your<br>birthday!</h2>
+    <div class="reveal-yay">Yay!!! <span>🎉</span></div>
+    <p>A little surprise, made with all my love, just for you. ♥</p>
+    <button class="reveal-continue" id="openBtn">Wanna see what's next ? 💌</button>
+  </div>
+</section>
 <main id="surprise" class="hidden">
 <section class="section shell" id="letterScreen">
   <div class="rule"></div>
@@ -1268,8 +1515,6 @@ const openBtn = document.getElementById('openBtn');
 const continueBtn = document.getElementById('continueBtn');
 const backToLetterBtn = document.getElementById('backToLetterBtn');
 const continueToFinalBtn = document.getElementById('continueToFinalBtn');
-const heartBtn = document.getElementById('heartBtn');
-const hugMessage = document.getElementById('hugMessage');
 
 // Hide all screens before showing the selected one.
 function showScreen(screen) {
@@ -1287,8 +1532,76 @@ function showScreen(screen) {
   });
 }
 
-// Birthday screen -> Letter.
+// Balloon-and-arrow birthday surprise: pull the horizontal arrow left, then release it toward the heart.
+const birthdayReveal = document.getElementById('birthdayReveal');
+const arrowControl = document.getElementById('arrowControl');
+const archeryStage = document.getElementById('archeryStage');
+const heartBalloon =  document.getElementById('heartBalloon');
+const arrowHint = document.getElementById('arrowHint');
+let arrowDragging = false;
+let arrowStartX = 0;
+let arrowPull = 0;
+let surpriseStarted = false;
+
+function showBirthdayReveal() {
+
+  if (surpriseStarted) return;
+
+  surpriseStarted = true;
+
+  birthdayReveal.hidden = false;
+
+  home.hidden = true;
+
+  burstHearts(24);
+
+}
+
+arrowControl.addEventListener('pointerdown', (event) => {
+  if (surpriseStarted) return;
+  arrowDragging = true;
+  arrowStartX = event.clientX;
+  arrowPull = 0;
+  arrowControl.setPointerCapture(event.pointerId);
+  arrowControl.style.cursor = 'grabbing';
+});
+arrowControl.addEventListener('pointermove', (event) => {
+  if (!arrowDragging) return;
+
+  arrowPull = Math.max(0, Math.min(58, arrowStartX - event.clientX));
+
+  arrowControl.style.transform =
+    `translateY(${arrowPull * 0.7}px) rotate(-45deg)`;
+});
+
+function releaseArrow() {
+
+  if (!arrowDragging) return;
+
+  arrowDragging = false;
+
+  arrowControl.style.cursor = 'grab';
+
+  if (arrowPull > 10) {
+
+      heartBalloon.classList.add('popped');
+
+      setTimeout(showBirthdayReveal, 500);
+
+  } else {
+
+      arrowControl.style.transform =
+      'rotate(-45deg)';
+
+  }
+}
+arrowControl.addEventListener('pointerup', releaseArrow);
+arrowControl.addEventListener('pointercancel', releaseArrow);
+arrowControl.addEventListener('click', () => {
+  if (!surpriseStarted && arrowPull <= 10) showBirthdayReveal();
+});
 openBtn.addEventListener('click', () => {
+  birthdayReveal.hidden = true;
   showScreen(letterScreen);
   burstHearts(20);
 });
