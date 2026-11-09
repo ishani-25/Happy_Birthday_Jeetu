@@ -1065,7 +1065,7 @@ h1 em {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #f5f1f3;
+  background: linear-gradient(145deg, #fff8fb, #f8edf1);
   color: #812542;
   overflow: hidden;
   transition: background 0.5s ease;
@@ -1107,65 +1107,148 @@ h1 em {
 ========================================= */
 
 .archery-stage{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  --archery-control-size:clamp(112px, 30vw, 132px);
+  --archery-control-top:clamp(128px, 35vw, 146px);
+  position:relative;
   width:100%;
-  height:260px;
-  gap:20px;
-  margin-top:14px;
-  touch-action:none;
+  max-width:360px;
+  min-height:310px;
+  margin-top:18px;
+  touch-action:pan-y;
 }
 
 .heart-target{
+  position:absolute;
+  top:4px;
+  left:50%;
   font-size:100px;
   line-height:1;
-  transition:all .4s ease;
+  transform:translateX(-50%);
   animation:pulseHeart 2s ease-in-out infinite;
+}
+.heart-target.popped::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:28px;
+  height:28px;
+  border:2px solid rgba(217,93,120,.72);
+  border-radius:50%;
+  box-shadow:0 0 0 5px rgba(217,93,120,.16);
+  pointer-events:none;
+  animation:heartBurstRing .24s ease-out forwards;
+}
+.impact-fragment{
+  position:fixed;
+  z-index:10003;
+  pointer-events:none;
+  line-height:1;
+  will-change:transform,opacity;
 }
 
 .arrow-control{
-  border:none;
-  background:none;
-  font-size:70px;
-  cursor:grab;
+  --arrow-rest-offset-y:-19;
+  --arrow-size-scale:1.15;
+  position:absolute;
+  top:var(--archery-control-top);
+  left:50%;
+  width:var(--archery-control-size);
+  height:var(--archery-control-size);
   padding:0;
-
-  transform:rotate(-45deg);
-  transition:
-    transform .3s ease,
-    opacity .3s ease;
+  border:none;
+  background:transparent;
+  cursor:grab;
+  touch-action:none;
+  transform:translateX(-50%);
 }
-
+.arrow-control svg{
+  display:block;
+  width:100%;
+  height:100%;
+}
 .arrow-control:active{
   cursor:grabbing;
 }
-
-.heart-target.popped{
+.bow-wood{
+  fill:none;
+  stroke:#ad795b;
+  stroke-width:4;
+  stroke-linecap:round;
+}
+.bow-string{
+  fill:none;
+  stroke:#bd7890;
+  stroke-width:1.6;
+  stroke-linecap:round;
+}
+.drawn-arrow{
+  fill:none;
+  stroke:#bd496f;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:opacity .12s ease;
+}
+.drawn-arrow-head{
+  fill:#bd496f;
+  stroke:#bd496f;
+  stroke-linejoin:round;
+}
+.arrow-control.launched .drawn-arrow{
   opacity:0;
-  transform:scale(0);
-  transition:
-      transform .4s ease,
-      opacity .4s ease;
 }
-.bow-image{
-  width:90px;
-  height:auto;
-  display:block;
+.heart-target.popped{
+  animation:heartPop .16s ease-out forwards;
 }
-
-
+.flying-arrow{
+  position:fixed;
+  z-index:10002;
+  width:18px;
+  height:34px;
+  overflow:visible;
+  pointer-events:none;
+  filter:drop-shadow(0 3px 4px rgba(76,25,43,.22));
+}
+.flying-arrow line,
+.flying-arrow path{
+  fill:none;
+  stroke:#bd496f;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.reveal-wash{
+  position:fixed;
+  inset:0;
+  z-index:10001;
+  pointer-events:none;
+  background:#c7194b;
+  clip-path:circle(0 at var(--wash-x,50%) var(--wash-y,50%));
+  transition:clip-path .28s cubic-bezier(.2,.72,.24,1);
+}
+.reveal-wash.active{
+  clip-path:circle(150vmax at var(--wash-x,50%) var(--wash-y,50%));
+}
 
 
 @keyframes pulseHeart{
   0%,100%{
-    transform:scale(1);
+    transform:translateX(-50%) scale(1);
   }
 
   50%{
-    transform:scale(1.08);
+    transform:translateX(-50%) scale(1.08);
   }
+}
+@keyframes heartPop{
+  0%{opacity:1;transform:translateX(-50%) scale(1);}
+  28%{opacity:1;transform:translateX(-50%) scale(1.22);}
+  100%{opacity:0;transform:translateX(-50%) scale(.05);}
+}
+@keyframes heartBurstRing{
+  from{opacity:.9;transform:translate(-50%,-50%) scale(.3);}
+  to{opacity:0;transform:translate(-50%,-50%) scale(2.6);}
 }
 
 .birthday-reveal {
@@ -1179,9 +1262,15 @@ h1 em {
   text-align: center;
   padding: 34px 20px;
   position: relative;
+  z-index:10002;
   overflow: hidden;
+  animation:revealArrive .65s ease both;
 }
 .birthday-reveal[hidden] { display: none !important; }
+@keyframes revealArrive{
+  from{opacity:0;transform:translateY(12px);}
+  to{opacity:1;transform:translateY(0);}
+}
 .reveal-content {
   width: min(100%,620px);
   position: relative;
@@ -1238,20 +1327,22 @@ h1 em {
   .intro-heart-mark { margin-bottom: 24px; }
   .intro-title { font-size: clamp(34px,9vw,46px); }
   .intro-instruction { margin-top: 22px; }
-  .archery-stage { height: 320px; margin-top: 20px; }
-    .arrow-control {
-    left: calc(50% - 66px);
-    top: 82px;
-    width: 90px;
+  .archery-stage {
+    --archery-control-size:clamp(108px, 32vw, 124px);
+    --archery-control-top:clamp(126px, 34vw, 138px);
+    min-height:290px;
+    margin-top:4px;
   }
   .intro-footnote { margin-top: 0; }
   .reveal-content h2 { font-size: clamp(52px,14vw,72px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .balloon-wrap,.reveal-content {
+  .balloon-wrap,.reveal-content,.birthday-reveal,.heart-target,
+  .heart-target.popped::after {
     animation: none !important;
     transition: none !important;
   }
+  .reveal-wash { transition:none !important; }
 }
 
 
@@ -1274,19 +1365,27 @@ h1 em {
         ❤️
       </div>
 
-       <button
+      <button
         class="arrow-control"
         id="arrowControl"
         type="button"
-        aria-label="Pull back the arrow"
+        aria-label="Pull down and release the arrow toward the heart"
       >
-          🏹
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <path class="bow-wood" d="M24 44 Q60 4 96 44"></path>
+          <path class="bow-string" id="bowString" d="M24 44 Q60 44 96 44"></path>
+          <g class="drawn-arrow" id="drawnArrow" transform="translate(60 44) scale(1.06) translate(-60 -44) translate(0 -24)">
+            <path d="M60 82 V33"></path>
+            <path class="drawn-arrow-head" d="M60 27 L56 37 L60 35 L64 37 Z"></path>
+            <path d="M60 73 L56 78 M60 73 L64 78"></path>
+          </g>
+        </svg>
       </button>
 
     </div>
 
     <p class="intro-instruction" id="arrowHint">
-      Pull back the arrow to begin
+      Pull down the arrow, then release it toward the heart
     </p>
 
     <p class="intro-footnote">
@@ -1295,6 +1394,7 @@ h1 em {
 
      </div>
 </header>
+<div class="reveal-wash" id="revealWash" aria-hidden="true" hidden></div>
 <section class="birthday-reveal" id="birthdayReveal" aria-live="polite" hidden>
   <div class="reveal-confetti" aria-hidden="true">♡　✦　♥　✧　♡　✦</div>
   <div class="reveal-content">
@@ -1532,74 +1632,166 @@ function showScreen(screen) {
   });
 }
 
-// Balloon-and-arrow birthday surprise: pull the horizontal arrow left, then release it toward the heart.
+// Pull the bowstring left, then animate the arrow into the birthday reveal.
 const birthdayReveal = document.getElementById('birthdayReveal');
 const arrowControl = document.getElementById('arrowControl');
-const archeryStage = document.getElementById('archeryStage');
 const heartBalloon =  document.getElementById('heartBalloon');
 const arrowHint = document.getElementById('arrowHint');
+const bowString = document.getElementById('bowString');
+const drawnArrow = document.getElementById('drawnArrow');
+const revealWash = document.getElementById('revealWash');
+const arrowRestOffsetY = parseFloat(
+  getComputedStyle(arrowControl).getPropertyValue('--arrow-rest-offset-y')
+);
+const arrowSizeScale = parseFloat(
+  getComputedStyle(arrowControl).getPropertyValue('--arrow-size-scale')
+);
 let arrowDragging = false;
-let arrowStartX = 0;
+let arrowStartY = 0;
 let arrowPull = 0;
 let surpriseStarted = false;
 
+function positionDrawnArrow(pullInSvgUnits = 0) {
+  drawnArrow.setAttribute(
+    'transform',
+    `translate(0 ${pullInSvgUnits}) translate(60 44) scale(${arrowSizeScale}) translate(-60 -44) translate(0 ${arrowRestOffsetY})`
+  );
+}
+
+positionDrawnArrow();
+
 function showBirthdayReveal() {
-
-  if (surpriseStarted) return;
-
-  surpriseStarted = true;
-
   birthdayReveal.hidden = false;
-
   home.hidden = true;
-
+  revealWash.classList.remove('active');
+  revealWash.hidden = true;
   burstHearts(24);
-
 }
 
 arrowControl.addEventListener('pointerdown', (event) => {
   if (surpriseStarted) return;
   arrowDragging = true;
-  arrowStartX = event.clientX;
+  arrowStartY = event.clientY;
   arrowPull = 0;
   arrowControl.setPointerCapture(event.pointerId);
   arrowControl.style.cursor = 'grabbing';
+  event.preventDefault();
 });
 arrowControl.addEventListener('pointermove', (event) => {
   if (!arrowDragging) return;
-
-  arrowPull = Math.max(0, Math.min(58, arrowStartX - event.clientX));
-
-  arrowControl.style.transform =
-    `translateY(${arrowPull * 0.7}px) rotate(-45deg)`;
+  arrowPull = Math.max(0, Math.min(44, event.clientY - arrowStartY));
+  const pullInSvgUnits =
+    arrowPull * 120 / arrowControl.getBoundingClientRect().height;
+  bowString.setAttribute(
+    'd',
+    `M24 44 Q60 ${44 + pullInSvgUnits} 96 44`
+  );
+  positionDrawnArrow(pullInSvgUnits);
 });
 
 function releaseArrow() {
-
   if (!arrowDragging) return;
-
   arrowDragging = false;
-
   arrowControl.style.cursor = 'grab';
-
   if (arrowPull > 10) {
-
-      heartBalloon.classList.add('popped');
-
-      setTimeout(showBirthdayReveal, 500);
-
+    launchArrow();
   } else {
-
-      arrowControl.style.transform =
-      'rotate(-45deg)';
-
+    bowString.setAttribute('d', 'M24 44 Q60 44 96 44');
+    positionDrawnArrow();
   }
 }
 arrowControl.addEventListener('pointerup', releaseArrow);
 arrowControl.addEventListener('pointercancel', releaseArrow);
-arrowControl.addEventListener('click', () => {
-  if (!surpriseStarted && arrowPull <= 10) showBirthdayReveal();
+arrowControl.addEventListener('click', (event) => {
+  if (!surpriseStarted && event.detail === 0) launchArrow();
 });
+
+function launchArrow() {
+  if (surpriseStarted) return;
+  surpriseStarted = true;
+  arrowControl.disabled = true;
+  arrowControl.classList.add('launched');
+  bowString.setAttribute('d', 'M24 44 Q60 44 96 44');
+  arrowHint.textContent = 'Here it comes… ♡';
+
+  const bowRect = arrowControl.getBoundingClientRect();
+  const heartRect = heartBalloon.getBoundingClientRect();
+  const startX = bowRect.left + bowRect.width / 2;
+  const arrowTipY =
+    44 + (27 + arrowRestOffsetY - 44) * arrowSizeScale;
+  const startY =
+    bowRect.top + arrowTipY * bowRect.height / 120 + arrowPull;
+  const targetX = heartRect.left + heartRect.width / 2;
+  const targetY = heartRect.top + heartRect.height / 2;
+  const projectile = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  projectile.setAttribute('viewBox', '0 0 16 34');
+  projectile.setAttribute('aria-hidden', 'true');
+  projectile.classList.add('flying-arrow');
+  projectile.innerHTML =
+    '<line x1="8" y1="33" x2="8" y2="8"></line>' +
+    '<path d="M8 1 L4 10 L8 8 L12 10 Z M8 26 L5 30 M8 26 L11 30"></path>';
+  projectile.style.left = `${startX - 8}px`;
+  projectile.style.top = `${startY}px`;
+  document.body.appendChild(projectile);
+
+  const flight = projectile.animate(
+    [
+      { left: `${startX - 8}px`, top: `${startY}px` },
+      { left: `${targetX - 8}px`, top: `${targetY}px` }
+    ],
+    { duration: 420, easing: 'cubic-bezier(.18,.72,.24,1)', fill: 'forwards' }
+  );
+  flight.onfinish = () => {
+    projectile.remove();
+    burstHeartAt(targetX, targetY);
+    heartBalloon.classList.add('popped');
+    spreadBirthdayColor(targetX, targetY);
+  };
+}
+
+function burstHeartAt(originX, originY) {
+  const fragments = ['♥', '♡', '✦', '♥', '✧', '♡', '•', '✦'];
+  const colors = ['#d95d78', '#bd496f', '#e58da4', '#c69a59'];
+
+  fragments.forEach((symbol, index) => {
+    const angle = (Math.PI * 2 * index) / fragments.length;
+    const distance = 48 + (index % 3) * 10;
+    const fragment = document.createElement('span');
+    fragment.className = 'impact-fragment';
+    fragment.textContent = symbol;
+    fragment.style.left = `${originX}px`;
+    fragment.style.top = `${originY}px`;
+    fragment.style.color = colors[index % colors.length];
+    fragment.style.fontSize = `${14 + (index % 3) * 3}px`;
+    document.body.appendChild(fragment);
+
+    const animation = fragment.animate(
+      [
+        {
+          transform: 'translate(-50%, -50%) scale(.3)',
+          opacity: 1
+        },
+        {
+          transform:
+            `translate(calc(-50% + ${Math.cos(angle) * distance}px), ` +
+            `calc(-50% + ${Math.sin(angle) * distance}px)) scale(0)`,
+          opacity: 0
+        }
+      ],
+      { duration: 320, easing: 'cubic-bezier(.16,.7,.3,1)', fill: 'forwards' }
+    );
+    animation.onfinish = () => fragment.remove();
+  });
+}
+
+function spreadBirthdayColor(originX, originY) {
+  revealWash.hidden = false;
+  revealWash.style.setProperty('--wash-x', `${originX / window.innerWidth * 100}%`);
+  revealWash.style.setProperty('--wash-y', `${originY / window.innerHeight * 100}%`);
+  requestAnimationFrame(() => revealWash.classList.add('active'));
+  window.setTimeout(showBirthdayReveal, 280);
+}
+
 openBtn.addEventListener('click', () => {
   birthdayReveal.hidden = true;
   showScreen(letterScreen);
